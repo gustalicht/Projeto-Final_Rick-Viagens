@@ -13,7 +13,7 @@
 								<a href="index.php">Home</a> 
 							</li>
 							<li class="menu-item"> 
-								<a href="admin/login.php">Página Administrativa(em construção)</a> 
+								<a href="login.php">Página Administrativa(em construção)</a> 
 							</li>
 							<li class="menu-item submenu"> 
 								<a href="html_pagina_hotelaria.php">Hotelaria</a> 								
