@@ -1,0 +1,208 @@
+body{
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #FAF1AB;
+}
+#topo{
+	padding: 0;
+	text-align: center;
+	background: #F6D82F;
+	border-radius: 0px 0px 10px 10px;
+}
+#topo .container{
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+}
+header #topo{
+	width: 100%;
+	height: 80px;
+}
+#topo #logo{
+	float: left;
+	width: 20%;
+}
+#logo img{
+	width: 60%;
+}
+.container{
+	max-width: 90%;
+	margin: 0 auto;
+}
+header .container{
+	overflow: visible;
+	width: 100%;
+}
+#menu ul{
+	padding: 0;
+	text-align: center;
+	text-decoration: none;
+}
+#menu li{
+	display: inline-block;
+	padding: 0 30px;
+	font-size: 13px;
+	list-style: none;
+}
+#menu ul li a{
+	list-style: none;
+	text-decoration: none;
+	color: black;
+}
+#menu ul li a:hover{
+	color: #fff;
+}
+#topo #menu{
+	position: relative;
+	display: flex;
+	text-decoration: none;
+	float: right;
+	padding-top: 15px;
+}
+#menu .submenu .dropdown li{
+	display: block;
+}
+#menu .submenu .dropdown li a{
+	color: black;
+}
+.submenu{
+	position: relative;
+}
+.container{
+	max-width: 90%;
+	margin: 0 auto;
+}
+.banner{
+	width: 100%;
+	height: 300px;
+	background: url(image/fundo3.jpg);
+	background-size: 100% auto;
+	background-position: center center;
+	border-radius: 0px 0px 10px 10px;
+	margin-bottom: 10px;
+	margin-top: 15px;
+}
+.banner h2{
+	font-family: 'Kaushan Script', cursiva;
+	font-size: 80px;
+    padding: 80px 50px;
+	color: #FFFBFE;
+}
+.container .titulo{
+	background-color: #F6D82F;
+	border-radius: 0px 0px 10px 10px;
+	height: 80px;
+}
+.titulo h3{
+	text-align: center;
+	font-size: 40px;
+	font-family: 'Kaushan Script', cursiva;
+	margin: 20px;
+	padding-top: 8px;
+}
+#galeria{
+	overflow: hidden;
+}
+#galeria .conteudo{
+	padding: 20px 20px;
+	width: 33%;
+	float: left;
+	box-sizing: border-box;
+}
+#galeria .conteudo img{
+	width: 100%;
+	display: block;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+	padding: 0;
+}
+#galeria .conteudo h4{
+	color: #fff;
+	font-size: 50px;
+	font-family: 'Kaushan Script', cursiva;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+	position: absolute;
+	margin-top: -130px;
+	margin-left: 15px;
+}
+#galeria .conteudo p{
+	font-size: 15px;
+	text-align: justify;
+}
+
+
+
+
+
+
+
+
+#rodape{
+	max-width: 100%;
+	margin: 0 auto;
+	display: block;
+	justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 5px;
+    background-color: #8F5300;
+}
+.social-media{
+	box-sizing: border-box;
+	padding: 10px 30px;
+	display: inline-block;
+}
+.icon{
+	display: flex;
+	border-radius: 50%;
+	padding: 0;
+	background: #29343e;
+	width: 30px;
+	height: 30px;
+	box-shadow: inset 2px 2px 2px rgb(0 0 0 / 75%);
+	align-items: center;
+    justify-content: center;
+
+}
+.icon i{
+	font-size: 20px;
+	display: block;
+	color: #fff;
+
+}
+.social-media:hover i{
+	text-shadow: 1px 1px 3px #000;
+	transform: translate(7px, -2px);
+	transition: all 0.5s ease;
+}
+#rodape h5{
+	text-align: center;
+	display: block;
+	margin-top: 5px;
+}
+
+.whats .wha {
+    background: #1ebea5;
+    width: 170px;
+    padding: 6px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(30, 190, 165, 0.75);
+    position: fixed;
+    bottom: 20px;
+    right: 64px;
+    z-index: 999;
+    border: solid 1px #fff;
+}
+.whats .wha p{
+	margin: 0 0 10px;
+}
+.whats .wha a{
+	color: #fff;
+	text-decoration: none;
+	font-size: 20px;
+}
+.whats .wha i{
+	font-size: 20px;
+}
