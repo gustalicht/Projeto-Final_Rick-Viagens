@@ -1,10 +1,6 @@
 <?php
 $usuarios = [
-	"admin@email.com" => "12345",
-	"carlos@email.com" => "CDZ",
-	"joao@email.com" => "99885522",
-	"luciano@email.com" => "101010",
-	"gustavo@gmail.com" => "teste123"
+"gustavo@gmail.com" => "teste123"
 ];
 if ( isset($_POST['login']) ) {	
 	if ( !empty($_POST['email']) ) {

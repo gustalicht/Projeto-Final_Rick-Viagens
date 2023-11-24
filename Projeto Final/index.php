@@ -13,38 +13,7 @@
 	</head>
 	<body>
 			
-		<header>	
-			<nav id="topo" class="container"> 
-				<div>
-					<div id= "logo">
-		<!-- na tag <a> vai algum link que direcione para o quem somos ou para a própria página inicial -->
-						<a href="trabalhe_conosco.php"> <img src="image/logo-03.png" alt="logo Rick"> </a>
-					</div>
-					<div id="menu">
-						<ul>
-							
-							<!-- colocar na tag <a> os links das outras páginas-->
-							<li class="menu-item"> 
-								<a href="admin/login.php">Página Administrativa</a> 
-							</li>
-							<li class="menu-item submenu"> 
-								<a href="html_pagina_hotelaria.php">Hotelaria</a> 								
-							</li>
-							
-							<li class="menu-item"> 
-								<a href="destinos.php">Destinos</a> 
-							</li>
-							
-							<li class="menu-item submenu"> 
-								<a href="trabalhe_conosco.php">Rick Viagens</a> 								
-							</li>
-						</ul>
-					</div>
-					
-				</div>
-			</nav>
-			
-		</header>
+	<?php require_once "menu.php"; ?>
 
 		<section class="container">			
 			<div class="banner">
@@ -86,37 +55,7 @@
 
 		</section>
 
-		<footer id="rodape">
-			<div class="social-media">
-				<div class="icon">
-					<a href="#"> <i class="fa-brands fa-instagram"></i>	</a>			
-				</div>
-			</div>	
-
-			<div class="social-media">
-				<div class="icon">
-					<a href="#"> <i class="fa-brands fa-whatsapp"></i>	</a>			
-				</div>
-			</div>	
-
-			<div class="social-media">
-				<div class="icon">
-					<a href="#"> <i class="fa-brands fa-facebook"></i>	</a>			
-				</div>
-			</div>	
-			<div>
-				<h5>Todos os direitos reservados.</h5>
-			</div>
-		</footer>
-
-		<div class="whats">
-			<p class="wha">
-				<a href="#"> 
-					<i class="fa-brands fa-whatsapp"></i>
-					Fale Conosco!
-				</a>
-			</p>
-		</div>
+		<?php require_once "rodape.php"; ?>
 
 	</body>
 </html>
