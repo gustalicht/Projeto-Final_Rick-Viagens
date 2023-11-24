@@ -1,3 +1,0 @@
-<section>
-	Conteúdo adicional
-</section>

@@ -14,7 +14,7 @@
 </head>
 <body>
 
-  <<?php require_once "menu.php"; ?>
+  <?php require_once "menu.php"; ?>
 
 <!--cabecalho de informaçoes--> 
 <section id="conteudo">
@@ -100,6 +100,6 @@
 
   
       <?php require_once "rodape.php"; ?>
-      
+
 </body>
 </html>
