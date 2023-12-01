@@ -73,6 +73,64 @@ header .container{
 	margin: 0 auto;
 }
 
+/* Adicione estas regras no seu arquivo admin.css */
+
+.delete-user-link {
+    color: red;
+    cursor: pointer;
+}
+
+.delete-user-link:hover {
+    text-decoration: underline;
+}
+
+/* Adicione estas regras no seu arquivo admin.css */
+
+.upload-form {
+    margin-top: 20px;
+}
+
+.upload-form input[type="file"] {
+    margin-bottom: 10px;
+}
+
+.upload-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background-color: #45a049;
+}
+
+/* Adicione estas regras no seu arquivo admin.css */
+
+.insert-user-form {
+    margin-top: 20px;
+}
+
+.insert-user-form input {
+    margin-bottom: 10px;
+}
+
+.insert-user-form input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.insert-user-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+
+
 .banner h2{
 	font-family: 'Kaushan Script', cursiva;
 	font-size: 80px;

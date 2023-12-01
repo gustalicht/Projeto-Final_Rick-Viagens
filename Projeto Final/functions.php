@@ -82,25 +82,87 @@ if (isset( $_POST['cadastrar'] )) {
 	}	
 }
 }
-function delete($connect, $id){
-	$query = "DELETE FROM usuarios WHERE id = $id";
-	$action = mysqli_query( $connect, $query );
+
+function delete($connect, $email) {
+    $email = mysqli_real_escape_string($connect, $email);
+	$query = "DELETE FROM usuarios WHERE email = '$email'";
+    $action = mysqli_query($connect, $query);
+   
+	
 	if ($action) {
-		echo "Registro deletado com sucesso";
-		header("location: insert.php");
-	}else{
-		echo "Erro ao deletar";
-	}
+        echo "Registro deletado com sucesso";
+    } else {
+        echo "Erro ao deletar";
+    }
 }
+
 
 function getUsers($connect){
 	$query = "SELECT * FROM usuarios WHERE 1 ORDER BY nome";
 	$action = mysqli_query( $connect, $query );
-	//Retorna apenas o 1º valor da tabela
-	//$results = mysqli_fetch_assoc($action);
-	//MYSQLI_BOTH - MYSQLI_NUM - MYSQLI_ASSOC
+
 	$results = mysqli_fetch_all($action, MYSQLI_ASSOC);
 	return $results;
+	
+
 }
+
+function uploadPhoto($file, $uploadDir, $connect, $userId)
+{
+    $uploadFile = $uploadDir . basename($file['name']);
+    
+    if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
+        $photoPath = mysqli_real_escape_string($connect, $uploadFile);
+        $query = "UPDATE usuarios SET foto = '$photoPath' WHERE id = $userId";
+        
+        $execute = mysqli_query($connect, $query);
+        
+        if ($execute) {
+            echo "Foto atualizada e upload realizado com sucesso";
+            return $uploadFile; // Retorna o caminho do arquivo no servidor após o upload bem-sucedido
+        } else {
+            echo "Erro ao atualizar o caminho da foto no banco de dados.";
+            // Se houver um erro ao atualizar o banco de dados, você pode optar por excluir o arquivo carregado para evitar inconsistências
+            unlink($uploadFile);
+            return false;
+        }
+    } else {
+        echo "Erro ao fazer o upload do arquivo.";
+        return false; // Retorna falso se houver erro no upload
+    }
+}
+
+
+function getUserData($connect, $userId) {
+    $userId = mysqli_real_escape_string($connect, $userId);
+    $query = "SELECT * FROM usuarios WHERE id = '$userId'";
+    $result = mysqli_query($connect, $query);
+    return mysqli_fetch_assoc($result);
+}
+
+// Função para atualizar informações do usuário
+function updateUsers($connect, $userId, $newEmail) {
+    $userId = mysqli_real_escape_string($connect, $userId);
+    $newEmail = mysqli_real_escape_string($connect, $newEmail);
+    
+    $query = "UPDATE usuarios SET email = '$newEmail' WHERE id = '$userId'";
+    $action = mysqli_query($connect, $query);
+
+    if ($action) {
+        echo "Registro atualizado com sucesso";
+    } else {
+        echo "Erro ao atualizar";
+    }
+}
+
+// Verificar se o formulário foi enviado
+if (isset($_POST['editar'])) {
+    $userId = $_GET['user_id']; // Certifique-se de obter o ID do usuário corretamente
+    $newEmail = $_POST['new_email'];
+
+    updateUsers($connect, $userId, $newEmail);
+}
+
+
 
 ?>

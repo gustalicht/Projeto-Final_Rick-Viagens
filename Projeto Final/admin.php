@@ -18,7 +18,6 @@
 		<p>
 			Olá <?php echo $_SESSION['email']; ?>, aqui você tem acesso as ferramentas para administrar seu sistema.
 		</p>
-		<a class="sair" href="deslogar.php">Sair</a>
 	</div>
 
 	<?php insertUser($connect); ?>
@@ -32,6 +31,114 @@
 		<input type="submit" name="cadastrar">		
 	</form>
 
+	<h3>Deletar usuário</h3>
+	<form method="post">
+		<input type="email" name="email" placeholder="Email para Deletar"required> 
+		<input type="submit" name="deletar">
+	</form>
+
+	<?php
+if (isset($_POST['deletar'])) {
+    $email = $_POST['email'];
+    delete($connect, $email);
+}
+?>
+
+	<h3>Aqui você pode verificar todos os usuários cadastrados na plataforma de administrador</h3>
+	<?php $users = getUsers($connect); 
+    if ($users) {
+		echo '<table>';
+		echo '<thead>';
+		echo '<tr>';
+		echo '<th>ID</th>';
+		echo '<th>Nome</th>';
+		echo '<th>Email</th>';
+		echo '<th>Foto</th>'; 
+		echo '<th>Atualizar Email</th>'; 
+		echo '</tr>';
+		echo '</thead>';
+		echo '<tbody>';
+	
+		foreach ($users as $user) {
+			echo '<tr>';
+			echo '<td>' . $user['id'] . '</td>';
+			echo '<td>' . $user['nome'] . '</td>';
+			echo '<td>' . $user['email'] . '</td>';
+			echo '<td><img src="' . $user['foto'] . '" alt="Foto do Usuário" style="width: 50px; height: 50px;"></td>';
+			echo '</tr>';
+		}
+	
+		echo '</tbody>';
+		echo '</table>';
+	} else {
+		echo '<p>Nenhum usuário encontrado.</p>';
+	}
+
+	mysqli_close($connect); 
+	?>
+<?php
+
+$userId = $_GET['user_id']; 
+$userData = getUserData($connect, $userId);
+
+// Verificar se o formulário foi enviado
+if (isset($_POST['editar'])) {
+    $userId = $_POST['user_id'];
+    $newEmail = $_POST['new_email'];
+
+    // Chamar a função para editar o usuário
+    updateUsers($connect, $userId, $newEmail);
+}
+ ?>
+
+
+    <h3>Editar Usuário</h3>
+
+    <?php
+    if ($userData) {
+    ?>
+        <form method="post" action="admin.php">
+            <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
+            
+            <label for="new_email">Novo E-mail:</label>
+            <input type="email" id="new_email" name="new_email" value="<?php echo $userData['email']; ?>" required>
+            <!-- Inclua outros campos do usuário conforme necessário -->
+
+            <input type="submit" name="editar" value="Editar">
+        </form>
+    <?php
+    } else {
+        echo '<p>Usuário não encontrado.</p>';
+    }
+    ?>
+
+	<h3>Upload de fotos </h3>
+
+	<form method="post" enctype="multipart/form-data" action="admin.php">
+    <label for="foto_usuario">Selecione a foto:</label>
+    <input type="file" name="foto_usuario" id="foto_usuario" accept="image/*" required>
+    <input type="hidden" name="id_usuario" value="12"> 
+    <button type="submit" name="submitPhoto">Enviar Foto</button>
+</form>
+
+<?php 
+if (isset($_POST['submitPhoto'])) {
+    $userId = $_POST['id_usuario'];
+    $uploadDir = 'image/';
+
+    if (isset($_FILES['foto_usuario'])) {
+        $uploadedFile = uploadPhoto($_FILES['foto_usuario'], $uploadDir, $connect, $userId);
+        
+        if ($uploadedFile) {
+            echo "Upload da foto realizado com sucesso.";
+            exit;
+        } else {
+            echo "Erro ao fazer o upload do arquivo.";
+        }
+    }
+}
+?>
+	<a class="sair" href="deslogar.php">Sair</a>
 	<?php } else {
 		echo "<p>Você não tem acesso a esta página.</p>";
 	} ?>
