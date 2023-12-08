@@ -25,26 +25,22 @@
 			</div>
 
 			<div id="galeria">		
-				<div class="conteudo">
-					<div>
-						<a href="franca.php"> <img src="image/franca.jpg" alt="França"> </a>
-					</div>
-					<h4>França</h4>					
-				</div>
-
-				<div class="conteudo">
-					<div>
-						<a href="inglaterra.php"> <img src="image/inglaterra.jpg" alt="Inglaterra"> </a>
-					</div>		
-					<h4>Inglaterra</h4>
-				</div>
-
-				<div class="conteudo">
-					<div>
-						<a href="argentina.php"> <img src="image/argentina.jpg" alt="Argetina"> </a>
-					</div>
-					<h4>Argetina</h4>
-				</div>
+			<?php
+    $countries = getCountries($connect);
+    foreach ($countries as $country) {
+        echo '<div class="conteudo">';
+        echo '<div>';
+        echo '<form method="post" action="admin.php">';
+        echo '<input type="hidden" name="country_id" value="' . $country['id'] . '">';
+        echo '<input type="text" name="new_country_name" value="' . $country['name'] . '" required>';
+        echo '<input type="submit" name="edit_country" value="Editar">';
+        echo '</form>';
+        echo '<a href="' . $country['link'] . '"> <img src="' . $country['image'] . '" alt="' . $country['name'] . '"> </a>';
+        echo '</div>';
+        echo '<h4>' . $country['name'] . '</h4>';
+        echo '</div>';
+    }
+    ?>
 			</div>
 
 			<div class="titulo">

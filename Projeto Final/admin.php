@@ -138,6 +138,16 @@ if (isset($_POST['submitPhoto'])) {
     }
 }
 ?>
+<?php
+    if (isset($_POST['edit_country'])) {
+        $countryId = $_POST['country_id'];
+        $newCountryName = $_POST['new_country_name'];
+
+        // Chamar a função para editar o nome do país
+        editCountryName($countryId, $newCountryName);
+    }
+?>
+
 	<a class="sair" href="deslogar.php">Sair</a>
 	<?php } else {
 		echo "<p>Você não tem acesso a esta página.</p>";

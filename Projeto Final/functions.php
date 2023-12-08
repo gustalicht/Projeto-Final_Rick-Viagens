@@ -164,5 +164,37 @@ if (isset($_POST['editar'])) {
 }
 
 
+function getCountries($connect) {
+	$countries = array();
 
+    // Query para obter os países do banco de dados
+    $query = "SELECT id, name, link, image FROM countries";
+    $result = mysqli_query($connect, $query);
+
+    // Verificar se a consulta foi bem-sucedida
+    if ($result) {
+        // Transformar os resultados em um array associativo
+        while ($row = mysqli_fetch_assoc($result)) {
+            $countries[] = $row;
+        }
+
+        // Liberar os recursos do resultado
+        mysqli_free_result($result);
+    } else {
+        // Tratar erros, se necessário
+        echo "Erro na consulta: " . mysqli_error($connect);
+    }
+
+    return $countries;
+}
+  
+
+function editCountryName($countryId, $newCountryName) {
+    // Lógica para editar o nome do país no banco de dados ou em qualquer outra fonte de dados
+    // Utilize a variável $countryId para identificar o país a ser editado
+    // Utilize a variável $newCountryName para obter o novo nome do país
+    // Exemplo fictício:
+    // $query = "UPDATE countries SET name = '$newCountryName' WHERE id = $countryId";
+    // mysqli_query($connect, $query);
+}
 ?>
