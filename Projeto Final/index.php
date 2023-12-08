@@ -1,3 +1,6 @@
+<?php
+    require_once 'functions.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -26,20 +29,16 @@
 
 			<div id="galeria">		
 			<?php
-    $countries = getCountries($connect);
-    foreach ($countries as $country) {
-        echo '<div class="conteudo">';
-        echo '<div>';
-        echo '<form method="post" action="admin.php">';
-        echo '<input type="hidden" name="country_id" value="' . $country['id'] . '">';
-        echo '<input type="text" name="new_country_name" value="' . $country['name'] . '" required>';
-        echo '<input type="submit" name="edit_country" value="Editar">';
-        echo '</form>';
-        echo '<a href="' . $country['link'] . '"> <img src="' . $country['image'] . '" alt="' . $country['name'] . '"> </a>';
-        echo '</div>';
-        echo '<h4>' . $country['name'] . '</h4>';
-        echo '</div>';
-    }
+			$countries = getCountries($connect);
+			foreach ($countries as $country) {
+				echo '<div class="conteudo">';
+				echo '<div>';
+				echo '<a href="' . $country['link'] . '"> <img src="' . $country['image'] . '" alt="' . $country['name'] . '"> </a>';
+				echo '</div>';
+				echo '<h4>' . $country['name'] . '</h4>';
+				echo '</div>';
+			}
+
     ?>
 			</div>
 

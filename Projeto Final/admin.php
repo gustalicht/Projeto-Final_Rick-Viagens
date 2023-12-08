@@ -74,7 +74,6 @@ if (isset($_POST['deletar'])) {
 		echo '<p>Nenhum usuário encontrado.</p>';
 	}
 
-	mysqli_close($connect); 
 	?>
 <?php
 
@@ -139,18 +138,42 @@ if (isset($_POST['submitPhoto'])) {
 }
 ?>
 <?php
+    $countryData = getCountries($connect);
+
+    // Verifique se os dados do país foram encontrados
+    if ($countryData && is_array($countryData)) {
+?>
+    <h1>Editar País</h1>
+
+    <form method="post" action="admin.php" enctype="multipart/form-data">
+        <input type="hidden" name="country_id" value="<?php echo $countryId; ?>">
+
+        <label for="new_country_image">Nova Imagem do País:</label>
+        <input type="file" id="new_country_image" name="new_country_image" accept="image/*">
+
+        <input type="submit" name="edit_country" value="Salvar Alterações">
+    </form>
+
+<?php
+    } else {
+        echo '<p>País não encontrado ou dados inválidos.</p>';
+    }
+
     if (isset($_POST['edit_country'])) {
         $countryId = $_POST['country_id'];
-        $newCountryName = $_POST['new_country_name'];
-
+		$newCountryImage = $_POST['new_country_image'];
         // Chamar a função para editar o nome do país
-        editCountryName($countryId, $newCountryName);
+        editCountryImage($connect, $countryId);
     }
 ?>
+
 
 	<a class="sair" href="deslogar.php">Sair</a>
 	<?php } else {
 		echo "<p>Você não tem acesso a esta página.</p>";
 	} ?>
+
+
+
 </body>
 </html>

@@ -189,12 +189,34 @@ function getCountries($connect) {
 }
   
 
-function editCountryName($countryId, $newCountryName) {
-    // Lógica para editar o nome do país no banco de dados ou em qualquer outra fonte de dados
-    // Utilize a variável $countryId para identificar o país a ser editado
-    // Utilize a variável $newCountryName para obter o novo nome do país
-    // Exemplo fictício:
-    // $query = "UPDATE countries SET name = '$newCountryName' WHERE id = $countryId";
-    // mysqli_query($connect, $query);
+function editCountryImage($connect, $countryId) {
+    // Verifique se uma nova imagem foi enviada
+    if (isset($_FILES['new_country_image']) && $_FILES['new_country_image']['error'] == 0) {
+        // Processar a nova imagem do país
+        $uploadDir = 'image/';
+		if (!file_exists($uploadDir)) {
+            // Crie o diretório se não existir
+            mkdir($uploadDir, 0777, true);
+        }
+        $newFileName = uniqid() . '_' . $_FILES['new_country_image']['name'];
+        $targetPath = $uploadDir . $newFileName;
+
+        if (move_uploaded_file($_FILES['new_country_image']['tmp_name'], $targetPath)) {
+            // Atualizar apenas a imagem do país no banco de dados
+            $query = "UPDATE countries SET image = '$targetPath' WHERE id = $countryId";
+            $result = mysqli_query($connect, $query);
+
+            if ($result) {
+                echo "Imagem do país atualizada com sucesso.";
+            } else {
+                echo "Erro ao atualizar a imagem do país: " . mysqli_error($connect);
+            }
+        } else {
+            echo "Erro ao fazer o upload da nova imagem do país.";
+        }
+    } else {
+        echo "Nenhuma nova imagem foi enviada.";
+    }
 }
+
 ?>
